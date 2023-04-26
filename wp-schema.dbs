@@ -1,0 +1,3497 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="MySql" id="Project-ebd" database="MySql" >
+	<schema name="local" >
+		<table name="wp_actionscheduler_actions" row_count="53" spec="" >
+			<column name="action_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="hook" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="scheduled_date_gmt" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="scheduled_date_local" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="args" type="VARCHAR" length="191" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="schedule" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="group_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="attempts" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="last_attempt_gmt" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="last_attempt_local" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="claim_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="extended_args" type="VARCHAR" length="8000" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_actionscheduler_actions" unique="PRIMARY_KEY" >
+				<column name="action_id" />
+			</index>
+			<index name="hook" unique="NORMAL" >
+				<column name="hook" />
+			</index>
+			<index name="status" unique="NORMAL" >
+				<column name="status" />
+			</index>
+			<index name="scheduled_date_gmt" unique="NORMAL" >
+				<column name="scheduled_date_gmt" />
+			</index>
+			<index name="args" unique="NORMAL" >
+				<column name="args" />
+			</index>
+			<index name="group_id" unique="NORMAL" >
+				<column name="group_id" />
+			</index>
+			<index name="last_attempt_gmt" unique="NORMAL" >
+				<column name="last_attempt_gmt" />
+			</index>
+			<index name="claim_id_status_scheduled_date_gmt" unique="NORMAL" >
+				<column name="claim_id" />
+				<column name="status" />
+				<column name="scheduled_date_gmt" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_actionscheduler_claims" row_count="0" spec="" >
+			<column name="claim_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="date_created_gmt" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<index name="pk_wp_actionscheduler_claims" unique="PRIMARY_KEY" >
+				<column name="claim_id" />
+			</index>
+			<index name="date_created_gmt" unique="NORMAL" >
+				<column name="date_created_gmt" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=748 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_actionscheduler_groups" row_count="6" spec="" >
+			<column name="group_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="slug" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_actionscheduler_groups" unique="PRIMARY_KEY" >
+				<column name="group_id" />
+			</index>
+			<index name="slug" unique="NORMAL" >
+				<column name="slug" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_actionscheduler_logs" row_count="150" spec="" >
+			<column name="log_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="action_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="message" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="log_date_gmt" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="log_date_local" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<index name="pk_wp_actionscheduler_logs" unique="PRIMARY_KEY" >
+				<column name="log_id" />
+			</index>
+			<index name="action_id" unique="NORMAL" >
+				<column name="action_id" />
+			</index>
+			<index name="log_date_gmt" unique="NORMAL" >
+				<column name="log_date_gmt" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=151 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_blogmeta" row_count="0" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="blog_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_blogmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<index name="blog_id" unique="NORMAL" >
+				<column name="blog_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_blogs" row_count="0" spec="" >
+			<column name="blog_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="site_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="domain" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="path" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="registered" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="last_updated" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="public" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<column name="archived" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="mature" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="spam" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="deleted" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="lang_id" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_blogs" unique="PRIMARY_KEY" >
+				<column name="blog_id" />
+			</index>
+			<index name="domain" unique="NORMAL" >
+				<column name="domain" options="(50)" />
+				<column name="path" options="(5)" />
+			</index>
+			<index name="lang_id" unique="NORMAL" >
+				<column name="lang_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_commentmeta" row_count="0" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="comment_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_commentmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="comment_id" unique="NORMAL" >
+				<column name="comment_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_comments" row_count="0" spec="" >
+			<column name="comment_ID" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="comment_post_ID" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="comment_author" type="TINYTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_author_email" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_author_url" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_author_IP" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_date" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="comment_date_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="comment_content" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_karma" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="comment_approved" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['1']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_agent" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_type" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['comment']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_parent" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_comments" unique="PRIMARY_KEY" >
+				<column name="comment_ID" />
+			</index>
+			<index name="comment_post_ID" unique="NORMAL" >
+				<column name="comment_post_ID" />
+			</index>
+			<index name="comment_approved_date_gmt" unique="NORMAL" >
+				<column name="comment_approved" />
+				<column name="comment_date_gmt" />
+			</index>
+			<index name="comment_date_gmt" unique="NORMAL" >
+				<column name="comment_date_gmt" />
+			</index>
+			<index name="comment_parent" unique="NORMAL" >
+				<column name="comment_parent" />
+			</index>
+			<index name="comment_author_email" unique="NORMAL" >
+				<column name="comment_author_email" options="(10)" />
+			</index>
+			<index name="woo_idx_comment_type" unique="NORMAL" >
+				<column name="comment_type" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_e_events" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="event_data" type="TEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="DATETIME" jt="93" mandatory="y" />
+			<index name="pk_wp_e_events" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="created_at_index" unique="NORMAL" >
+				<column name="created_at" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_gla_attribute_mapping_rules" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="attribute" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="source" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="category_condition_type" type="VARCHAR" length="10" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="categories" type="TEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_gla_attribute_mapping_rules" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_gla_budget_recommendations" row_count="4230" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="currency" type="VARCHAR" length="3" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="country" type="VARCHAR" length="2" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="daily_budget_low" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="daily_budget_high" type="INT" length="11" jt="4" mandatory="y" />
+			<index name="pk_wp_gla_budget_recommendations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="country_currency" unique="UNIQUE_KEY" >
+				<column name="country" />
+				<column name="currency" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=4231 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_gla_merchant_issues" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="issue" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="code" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="severity" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['warning']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="product" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="action" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="action_url" type="VARCHAR" length="1024" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="applicable_countries" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="source" type="VARCHAR" length="10" jt="12" mandatory="y" >
+				<defo><![CDATA['mc']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="10" jt="12" mandatory="y" >
+				<defo><![CDATA['product']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="DATETIME" jt="93" mandatory="y" />
+			<index name="pk_wp_gla_merchant_issues" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_gla_shipping_rates" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="country" type="VARCHAR" length="2" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="currency" type="VARCHAR" length="3" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="rate" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="options" type="TEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_gla_shipping_rates" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="country" unique="NORMAL" >
+				<column name="country" />
+			</index>
+			<index name="currency" unique="NORMAL" >
+				<column name="currency" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_gla_shipping_times" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="country" type="VARCHAR" length="2" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="time" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_gla_shipping_times" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="country" unique="NORMAL" >
+				<column name="country" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_links" row_count="0" spec="" >
+			<column name="link_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="link_url" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_image" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_target" type="VARCHAR" length="25" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_description" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_visible" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['Y']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_owner" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<column name="link_rating" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="link_updated" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="link_rel" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_notes" type="MEDIUMTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_rss" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_links" unique="PRIMARY_KEY" >
+				<column name="link_id" />
+			</index>
+			<index name="link_visible" unique="NORMAL" >
+				<column name="link_visible" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automation_run_logs" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="automation_run_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="step_id" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="started_at" type="TIMESTAMP" jt="93" mandatory="y" />
+			<column name="completed_at" type="TIMESTAMP" jt="93" />
+			<column name="error" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="data" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_automation_run_logs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="automation_run_id" unique="NORMAL" >
+				<column name="automation_run_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automation_run_subjects" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="automation_run_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="key" type="VARCHAR" length="191" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="args" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="hash" type="VARCHAR" length="191" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_automation_run_subjects" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="automation_run_id" unique="NORMAL" >
+				<column name="automation_run_id" />
+			</index>
+			<index name="hash" unique="NORMAL" >
+				<column name="hash" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automation_runs" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="automation_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="version_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="trigger_key" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="next_step_id" type="VARCHAR" length="191" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_automation_runs" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="automation_id" unique="NORMAL" >
+				<column name="automation_id" />
+				<column name="status" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automation_triggers" row_count="0" spec="" >
+			<column name="automation_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="trigger_key" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_automation_triggers" unique="PRIMARY_KEY" >
+				<column name="automation_id" />
+				<column name="trigger_key" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automation_versions" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="automation_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="steps" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_automation_versions" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="automation_id" unique="NORMAL" >
+				<column name="automation_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_automations" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="author" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="status" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="activated_at" type="TIMESTAMP" jt="93" />
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<index name="pk_wp_mailpoet_automations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_custom_fields" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="params" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_custom_fields" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_dynamic_segment_filters" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="segment_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="filter_data" type="LONGBLOB" jt="-4" />
+			<column name="filter_type" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="action" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_dynamic_segment_filters" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="segment_id" unique="NORMAL" >
+				<column name="segment_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_feature_flags" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="value" type="TINYINT" length="1" jt="-6" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_feature_flags" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_forms" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['enabled']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="body" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="settings" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="styles" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<index name="pk_wp_mailpoet_forms" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_log" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="level" type="INT" length="11" jt="4" />
+			<column name="message" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<column name="raw_message" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="context" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_log" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_migrations" row_count="8" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="started_at" type="TIMESTAMP" jt="93" mandatory="y" />
+			<column name="completed_at" type="TIMESTAMP" jt="93" />
+			<column name="retries" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="error" type="TEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_migrations" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_links" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="url" type="VARCHAR" length="2083" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="hash" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_links" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+			</index>
+			<index name="queue_id" unique="NORMAL" >
+				<column name="queue_id" />
+			</index>
+			<index name="url" unique="NORMAL" >
+				<column name="url" options="(100)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_option" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="option_field_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_option" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id_option_field_id" unique="UNIQUE_KEY" >
+				<column name="newsletter_id" />
+				<column name="option_field_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_option_fields" row_count="24" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="newsletter_type" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_option_fields" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name_newsletter_type" unique="UNIQUE_KEY" >
+				<column name="newsletter_type" />
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_posts" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="post_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_posts" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_segment" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="segment_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_segment" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_segment" unique="UNIQUE_KEY" >
+				<column name="newsletter_id" />
+				<column name="segment_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletter_templates" row_count="69" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="name" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="categories" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['[]']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="description" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="body" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="thumbnail" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="thumbnail_data" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="readonly" type="TINYINT" length="1" jt="-6" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletter_templates" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_newsletters" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="hash" type="VARCHAR" length="150" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="parent_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="subject" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['standard']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="sender_address" type="VARCHAR" length="150" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="sender_name" type="VARCHAR" length="150" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['draft']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="reply_to_address" type="VARCHAR" length="150" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="reply_to_name" type="VARCHAR" length="150" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="preheader" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="body" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="sent_at" type="TIMESTAMP" jt="93" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<column name="unsubscribe_token" type="CHAR" length="15" jt="1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="ga_campaign" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_newsletters" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="unsubscribe_token" unique="UNIQUE_KEY" >
+				<column name="unsubscribe_token" />
+			</index>
+			<index name="type_status" unique="NORMAL" >
+				<column name="type" />
+				<column name="status" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_scheduled_task_subscribers" row_count="0" spec="" >
+			<column name="task_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="processed" type="INT" length="1" jt="4" mandatory="y" />
+			<column name="failed" type="SMALLINT" length="1" jt="5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="error" type="TEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_scheduled_task_subscribers" unique="PRIMARY_KEY" >
+				<column name="task_id" />
+				<column name="subscriber_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_scheduled_tasks" row_count="6" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="type" type="VARCHAR" length="90" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="12" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="priority" type="MEDIUMINT" length="9" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="scheduled_at" type="TIMESTAMP" jt="93" />
+			<column name="processed_at" type="TIMESTAMP" jt="93" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<column name="in_progress" type="INT" length="1" jt="4" />
+			<column name="reschedule_count" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_scheduled_tasks" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="type" unique="NORMAL" >
+				<column name="type" />
+			</index>
+			<index name="status" unique="NORMAL" >
+				<column name="status" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_segments" row_count="3" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="90" jt="12" mandatory="y" >
+				<defo><![CDATA['default']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="description" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<column name="average_engagement_score" type="FLOAT" jt="7" unsigned="y" />
+			<column name="average_engagement_score_updated_at" type="TIMESTAMP" jt="93" />
+			<column name="display_in_manage_subscription_page" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_segments" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<index name="average_engagement_score_updated_at" unique="NORMAL" >
+				<column name="average_engagement_score_updated_at" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_sending_queues" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="task_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="newsletter_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="newsletter_rendered_body" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="newsletter_rendered_subject" type="VARCHAR" length="250" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="subscribers" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="count_total" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="count_processed" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="count_to_process" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<index name="pk_wp_mailpoet_sending_queues" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="task_id" unique="NORMAL" >
+				<column name="task_id" />
+			</index>
+			<index name="newsletter_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_settings" row_count="14" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_settings" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_bounces" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_bounces" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_clicks" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="link_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="user_agent_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="user_agent_type" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="count" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_clicks" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id_subscriber_id_user_agent_type" unique="NORMAL" >
+				<column name="newsletter_id" />
+				<column name="subscriber_id" />
+				<column name="user_agent_type" />
+			</index>
+			<index name="queue_id" unique="NORMAL" >
+				<column name="queue_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_forms" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="form_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_forms" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="form_subscriber" unique="UNIQUE_KEY" >
+				<column name="form_id" />
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_newsletters" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="sent_at" type="TIMESTAMP" jt="93" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_newsletters" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_opens" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="user_agent_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="user_agent_type" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_opens" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id_subscriber_id_user_agent_type" unique="NORMAL" >
+				<column name="newsletter_id" />
+				<column name="subscriber_id" />
+				<column name="user_agent_type" />
+			</index>
+			<index name="queue_id" unique="NORMAL" >
+				<column name="queue_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<index name="created_at" unique="NORMAL" >
+				<column name="created_at" />
+			</index>
+			<index name="subscriber_id_created_at" unique="NORMAL" >
+				<column name="subscriber_id" />
+				<column name="created_at" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_unsubscribes" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<column name="source" type="VARCHAR" length="255" jt="12" >
+				<defo><![CDATA['unknown']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="method" type="VARCHAR" length="40" jt="12" mandatory="y" >
+				<defo><![CDATA['unknown']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_unsubscribes" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id_subscriber_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+				<column name="subscriber_id" />
+			</index>
+			<index name="queue_id" unique="NORMAL" >
+				<column name="queue_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_statistics_woocommerce_purchases" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="queue_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="click_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="order_currency" type="CHAR" length="3" jt="1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="order_price_total" type="FLOAT" jt="7" mandatory="y" >
+				<comment><![CDATA[With shipping and taxes in order_currency]]></comment>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_statistics_woocommerce_purchases" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="click_id_order_id" unique="UNIQUE_KEY" >
+				<column name="click_id" />
+				<column name="order_id" />
+			</index>
+			<index name="newsletter_id" unique="NORMAL" >
+				<column name="newsletter_id" />
+			</index>
+			<index name="queue_id" unique="NORMAL" >
+				<column name="queue_id" />
+			</index>
+			<index name="subscriber_id" unique="NORMAL" >
+				<column name="subscriber_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_stats_notifications" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="newsletter_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="task_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_stats_notifications" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="newsletter_id_task_id" unique="UNIQUE_KEY" >
+				<column name="newsletter_id" />
+				<column name="task_id" />
+			</index>
+			<index name="task_id" unique="NORMAL" >
+				<column name="task_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_subscriber_custom_field" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="custom_field_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="value" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_subscriber_custom_field" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="subscriber_id_custom_field_id" unique="UNIQUE_KEY" >
+				<column name="subscriber_id" />
+				<column name="custom_field_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_subscriber_ips" row_count="0" spec="" >
+			<column name="ip" type="VARCHAR" length="45" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_subscriber_ips" unique="PRIMARY_KEY" >
+				<column name="created_at" />
+				<column name="ip" />
+			</index>
+			<index name="ip" unique="NORMAL" >
+				<column name="ip" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_subscriber_segment" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="segment_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="status" type="VARCHAR" length="12" jt="12" mandatory="y" >
+				<defo><![CDATA['subscribed']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_subscriber_segment" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="subscriber_segment" unique="UNIQUE_KEY" >
+				<column name="subscriber_id" />
+				<column name="segment_id" />
+			</index>
+			<index name="segment_id" unique="NORMAL" >
+				<column name="segment_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_subscriber_tag" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="subscriber_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="tag_id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_subscriber_tag" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="subscriber_tag" unique="UNIQUE_KEY" >
+				<column name="subscriber_id" />
+				<column name="tag_id" />
+			</index>
+			<index name="tag_id" unique="NORMAL" >
+				<column name="tag_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_subscribers" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="wp_user_id" type="BIGINT" length="20" jt="-5" />
+			<column name="is_woocommerce_user" type="INT" length="1" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="first_name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="last_name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="email" type="VARCHAR" length="150" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="12" jt="12" mandatory="y" >
+				<defo><![CDATA['unconfirmed']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="subscribed_ip" type="VARCHAR" length="45" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="confirmed_ip" type="VARCHAR" length="45" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="confirmed_at" type="TIMESTAMP" jt="93" />
+			<column name="last_subscribed_at" type="TIMESTAMP" jt="93" />
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<column name="deleted_at" type="TIMESTAMP" jt="93" />
+			<column name="unconfirmed_data" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="source" type="ENUM" jt="12" >
+				<defo><![CDATA['unknown']]></defo>
+				<enumeration><![CDATA['form','imported','administrator','api','wordpress_user','woocommerce_user','woocommerce_checkout','unknown']]></enumeration>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="count_confirmations" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="unsubscribe_token" type="CHAR" length="15" jt="1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="link_token" type="CHAR" length="32" jt="1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="engagement_score" type="FLOAT" jt="7" unsigned="y" />
+			<column name="engagement_score_updated_at" type="TIMESTAMP" jt="93" />
+			<column name="last_engagement_at" type="TIMESTAMP" jt="93" />
+			<column name="woocommerce_synced_at" type="TIMESTAMP" jt="93" />
+			<column name="email_count" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_mailpoet_subscribers" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="email" unique="UNIQUE_KEY" >
+				<column name="email" />
+			</index>
+			<index name="unsubscribe_token" unique="UNIQUE_KEY" >
+				<column name="unsubscribe_token" />
+			</index>
+			<index name="wp_user_id" unique="NORMAL" >
+				<column name="wp_user_id" />
+			</index>
+			<index name="updated_at" unique="NORMAL" >
+				<column name="updated_at" />
+			</index>
+			<index name="status_deleted_at" unique="NORMAL" >
+				<column name="status" />
+				<column name="deleted_at" />
+			</index>
+			<index name="last_subscribed_at" unique="NORMAL" >
+				<column name="last_subscribed_at" />
+			</index>
+			<index name="engagement_score_updated_at" unique="NORMAL" >
+				<column name="engagement_score_updated_at" />
+			</index>
+			<index name="link_token" unique="NORMAL" >
+				<column name="link_token" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_tags" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="description" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_tags" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="name" unique="UNIQUE_KEY" >
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_user_agents" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="hash" type="VARCHAR" length="32" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_agent" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_user_agents" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="hash" unique="UNIQUE_KEY" >
+				<column name="hash" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_mailpoet_user_flags" row_count="0" spec="" >
+			<column name="id" type="INT" length="11" jt="4" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="name" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="value" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="created_at" type="TIMESTAMP" jt="93" />
+			<column name="updated_at" type="TIMESTAMP" jt="93" mandatory="y" >
+				<defo><![CDATA[CURRENT_TIMESTAMP]]></defo>
+				<column_options><![CDATA[ON UPDATE CURRENT_TIMESTAMP]]></column_options>
+			</column>
+			<index name="pk_wp_mailpoet_user_flags" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="user_id_name" unique="UNIQUE_KEY" >
+				<column name="user_id" />
+				<column name="name" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_options" row_count="419" spec="" >
+			<column name="option_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="option_name" type="VARCHAR" length="191" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="option_value" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="autoload" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['yes']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_options" unique="PRIMARY_KEY" >
+				<column name="option_id" />
+			</index>
+			<index name="option_name" unique="UNIQUE_KEY" >
+				<column name="option_name" />
+			</index>
+			<index name="autoload" unique="NORMAL" >
+				<column name="autoload" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=1817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_postmeta" row_count="208" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="post_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_postmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="post_id" unique="NORMAL" >
+				<column name="post_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=235 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_posts" row_count="68" spec="" >
+			<column name="ID" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="post_author" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="post_date" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="post_date_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="post_content" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_title" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_excerpt" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['publish']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['open']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="ping_status" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['open']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_password" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="to_ping" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="pinged" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_modified" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="post_modified_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="post_content_filtered" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_parent" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="guid" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="menu_order" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="post_type" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['post']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="post_mime_type" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="comment_count" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_posts" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="post_name" unique="NORMAL" >
+				<column name="post_name" options="(191)" />
+			</index>
+			<index name="type_status_date" unique="NORMAL" >
+				<column name="post_type" />
+				<column name="post_status" />
+				<column name="post_date" />
+				<column name="ID" />
+			</index>
+			<index name="post_parent" unique="NORMAL" >
+				<column name="post_parent" />
+			</index>
+			<index name="post_author" unique="NORMAL" >
+				<column name="post_author" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=72 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_registration_log" row_count="0" spec="" >
+			<column name="ID" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="email" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="IP" type="VARCHAR" length="30" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="blog_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="date_registered" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<index name="pk_wp_registration_log" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="IP" unique="NORMAL" >
+				<column name="IP" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_signups" row_count="0" spec="" >
+			<column name="signup_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="domain" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="path" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="title" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_login" type="VARCHAR" length="60" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_email" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="registered" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="activated" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="active" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="activation_key" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_signups" unique="PRIMARY_KEY" >
+				<column name="signup_id" />
+			</index>
+			<index name="activation_key" unique="NORMAL" >
+				<column name="activation_key" />
+			</index>
+			<index name="user_email" unique="NORMAL" >
+				<column name="user_email" />
+			</index>
+			<index name="user_login_email" unique="NORMAL" >
+				<column name="user_login" />
+				<column name="user_email" />
+			</index>
+			<index name="domain_path" unique="NORMAL" >
+				<column name="domain" options="(140)" />
+				<column name="path" options="(51)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_site" row_count="0" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="domain" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="path" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_site" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="domain" unique="NORMAL" >
+				<column name="domain" options="(140)" />
+				<column name="path" options="(51)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_sitemeta" row_count="47" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="site_id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_sitemeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<index name="site_id" unique="NORMAL" >
+				<column name="site_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=350 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_term_relationships" row_count="15" spec="" >
+			<column name="object_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="term_taxonomy_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="term_order" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_term_relationships" unique="PRIMARY_KEY" >
+				<column name="object_id" />
+				<column name="term_taxonomy_id" />
+			</index>
+			<index name="term_taxonomy_id" unique="NORMAL" >
+				<column name="term_taxonomy_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_term_taxonomy" row_count="16" spec="" >
+			<column name="term_taxonomy_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="term_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="taxonomy" type="VARCHAR" length="32" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="description" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="parent" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="count" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_term_taxonomy" unique="PRIMARY_KEY" >
+				<column name="term_taxonomy_id" />
+			</index>
+			<index name="term_id_taxonomy" unique="UNIQUE_KEY" >
+				<column name="term_id" />
+				<column name="taxonomy" />
+			</index>
+			<index name="taxonomy" unique="NORMAL" >
+				<column name="taxonomy" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_termmeta" row_count="3" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="term_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_termmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="term_id" unique="NORMAL" >
+				<column name="term_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_terms" row_count="16" spec="" >
+			<column name="term_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="slug" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="term_group" type="BIGINT" length="10" jt="-5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_terms" unique="PRIMARY_KEY" >
+				<column name="term_id" />
+			</index>
+			<index name="slug" unique="NORMAL" >
+				<column name="slug" options="(191)" />
+			</index>
+			<index name="name" unique="NORMAL" >
+				<column name="name" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_um_metadata" row_count="0" spec="" >
+			<column name="umeta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="um_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="um_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_um_metadata" unique="PRIMARY_KEY" >
+				<column name="umeta_id" />
+			</index>
+			<index name="user_id_indx" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<index name="meta_key_indx" unique="NORMAL" >
+				<column name="um_key" />
+			</index>
+			<index name="meta_value_indx" unique="NORMAL" >
+				<column name="um_value" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_usermeta" row_count="41" spec="" >
+			<column name="umeta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_usermeta" unique="PRIMARY_KEY" >
+				<column name="umeta_id" />
+			</index>
+			<index name="user_id" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=66 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_users" row_count="1" spec="" >
+			<column name="ID" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_login" type="VARCHAR" length="60" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_pass" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_nicename" type="VARCHAR" length="50" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_email" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_url" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_registered" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="user_activation_key" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_status" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="display_name" type="VARCHAR" length="250" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="spam" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="deleted" type="TINYINT" length="2" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_users" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="user_login_key" unique="NORMAL" >
+				<column name="user_login" />
+			</index>
+			<index name="user_nicename" unique="NORMAL" >
+				<column name="user_nicename" />
+			</index>
+			<index name="user_email" unique="NORMAL" >
+				<column name="user_email" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_admin_note_actions" row_count="68" spec="" >
+			<column name="action_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="note_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="label" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="query" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="actioned_text" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="nonce_action" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="nonce_name" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_admin_note_actions" unique="PRIMARY_KEY" >
+				<column name="action_id" />
+			</index>
+			<index name="note_id" unique="NORMAL" >
+				<column name="note_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=1587 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_admin_notes" row_count="56" spec="" >
+			<column name="note_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="type" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="locale" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="title" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="content" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="content_data" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="status" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="source" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_reminder" type="DATETIME" jt="93" />
+			<column name="is_snoozable" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="layout" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="image" type="VARCHAR" length="200" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="is_deleted" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="is_read" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="icon" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['info']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_admin_notes" unique="PRIMARY_KEY" >
+				<column name="note_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_category_lookup" row_count="0" spec="" >
+			<column name="category_tree_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="category_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<index name="pk_wp_wc_category_lookup" unique="PRIMARY_KEY" >
+				<column name="category_tree_id" />
+				<column name="category_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_customer_lookup" row_count="0" spec="" >
+			<column name="customer_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" unsigned="y" />
+			<column name="username" type="VARCHAR" length="60" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="first_name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="last_name" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="email" type="VARCHAR" length="100" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="date_last_active" type="TIMESTAMP" jt="93" />
+			<column name="date_registered" type="TIMESTAMP" jt="93" />
+			<column name="country" type="CHAR" length="2" jt="1" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="postcode" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="city" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="state" type="VARCHAR" length="100" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_customer_lookup" unique="PRIMARY_KEY" >
+				<column name="customer_id" />
+			</index>
+			<index name="user_id" unique="UNIQUE_KEY" >
+				<column name="user_id" />
+			</index>
+			<index name="email" unique="NORMAL" >
+				<column name="email" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_download_log" row_count="0" spec="" >
+			<column name="download_log_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="timestamp" type="DATETIME" jt="93" mandatory="y" />
+			<column name="permission_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="user_id" type="BIGINT" length="20" jt="-5" unsigned="y" />
+			<column name="user_ip_address" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_download_log" unique="PRIMARY_KEY" >
+				<column name="download_log_id" />
+			</index>
+			<index name="permission_id" unique="NORMAL" >
+				<column name="permission_id" />
+			</index>
+			<index name="timestamp" unique="NORMAL" >
+				<column name="timestamp" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_order_coupon_lookup" row_count="0" spec="" >
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="coupon_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="discount_amount" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_order_coupon_lookup" unique="PRIMARY_KEY" >
+				<column name="order_id" />
+				<column name="coupon_id" />
+			</index>
+			<index name="coupon_id" unique="NORMAL" >
+				<column name="coupon_id" />
+			</index>
+			<index name="date_created" unique="NORMAL" >
+				<column name="date_created" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_order_product_lookup" row_count="0" spec="" >
+			<column name="order_item_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="variation_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="customer_id" type="BIGINT" length="20" jt="-5" unsigned="y" />
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="product_qty" type="INT" length="11" jt="4" mandatory="y" />
+			<column name="product_net_revenue" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="product_gross_revenue" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="coupon_amount" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="tax_amount" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="shipping_amount" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="shipping_tax_amount" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_order_product_lookup" unique="PRIMARY_KEY" >
+				<column name="order_item_id" />
+			</index>
+			<index name="order_id" unique="NORMAL" >
+				<column name="order_id" />
+			</index>
+			<index name="product_id" unique="NORMAL" >
+				<column name="product_id" />
+			</index>
+			<index name="customer_id" unique="NORMAL" >
+				<column name="customer_id" />
+			</index>
+			<index name="date_created" unique="NORMAL" >
+				<column name="date_created" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_order_stats" row_count="0" spec="" >
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="parent_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_created_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_paid" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_completed" type="DATETIME" jt="93" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="num_items_sold" type="INT" length="11" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="total_sales" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="tax_total" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="shipping_total" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="net_total" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="returning_customer" type="TINYINT" length="1" jt="-6" />
+			<column name="status" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="customer_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<index name="pk_wp_wc_order_stats" unique="PRIMARY_KEY" >
+				<column name="order_id" />
+			</index>
+			<index name="date_created" unique="NORMAL" >
+				<column name="date_created" />
+			</index>
+			<index name="customer_id" unique="NORMAL" >
+				<column name="customer_id" />
+			</index>
+			<index name="status" unique="NORMAL" >
+				<column name="status" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_order_tax_lookup" row_count="0" spec="" >
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="tax_rate_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="shipping_tax" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="order_tax" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="total_tax" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_order_tax_lookup" unique="PRIMARY_KEY" >
+				<column name="order_id" />
+				<column name="tax_rate_id" />
+			</index>
+			<index name="tax_rate_id" unique="NORMAL" >
+				<column name="tax_rate_id" />
+			</index>
+			<index name="date_created" unique="NORMAL" >
+				<column name="date_created" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_product_attributes_lookup" row_count="0" spec="" >
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="product_or_parent_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="taxonomy" type="VARCHAR" length="32" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="term_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="is_variation_attribute" type="TINYINT" length="1" jt="-6" mandatory="y" />
+			<column name="in_stock" type="TINYINT" length="1" jt="-6" mandatory="y" />
+			<index name="pk_wp_wc_product_attributes_lookup" unique="PRIMARY_KEY" >
+				<column name="product_or_parent_id" />
+				<column name="term_id" />
+				<column name="product_id" />
+				<column name="taxonomy" />
+			</index>
+			<index name="is_variation_attribute_term_id" unique="NORMAL" >
+				<column name="is_variation_attribute" />
+				<column name="term_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_product_download_directories" row_count="2" spec="" >
+			<column name="url_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="url" type="VARCHAR" length="256" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="enabled" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_product_download_directories" unique="PRIMARY_KEY" >
+				<column name="url_id" />
+			</index>
+			<index name="url" unique="NORMAL" >
+				<column name="url" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_product_meta_lookup" row_count="3" spec="" >
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="sku" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="virtual" type="TINYINT" length="1" jt="-6" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="downloadable" type="TINYINT" length="1" jt="-6" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="min_price" type="DECIMAL" length="19" decimal="4" jt="3" />
+			<column name="max_price" type="DECIMAL" length="19" decimal="4" jt="3" />
+			<column name="onsale" type="TINYINT" length="1" jt="-6" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="stock_quantity" type="DOUBLE" jt="8" />
+			<column name="stock_status" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA['instock']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="rating_count" type="BIGINT" length="20" jt="-5" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="average_rating" type="DECIMAL" length="3" decimal="2" jt="3" >
+				<defo><![CDATA['0.00']]></defo>
+			</column>
+			<column name="total_sales" type="BIGINT" length="20" jt="-5" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="tax_status" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA['taxable']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_class" type="VARCHAR" length="100" jt="12" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_product_meta_lookup" unique="PRIMARY_KEY" >
+				<column name="product_id" />
+			</index>
+			<index name="virtual" unique="NORMAL" >
+				<column name="virtual" />
+			</index>
+			<index name="downloadable" unique="NORMAL" >
+				<column name="downloadable" />
+			</index>
+			<index name="stock_status" unique="NORMAL" >
+				<column name="stock_status" />
+			</index>
+			<index name="stock_quantity" unique="NORMAL" >
+				<column name="stock_quantity" />
+			</index>
+			<index name="onsale" unique="NORMAL" >
+				<column name="onsale" />
+			</index>
+			<index name="min_max_price" unique="NORMAL" >
+				<column name="min_price" />
+				<column name="max_price" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_rate_limits" row_count="0" spec="" >
+			<column name="rate_limit_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="rate_limit_key" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="rate_limit_expiry" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="rate_limit_remaining" type="SMALLINT" length="10" jt="5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_rate_limits" unique="PRIMARY_KEY" >
+				<column name="rate_limit_id" />
+			</index>
+			<index name="rate_limit_key" unique="UNIQUE_KEY" >
+				<column name="rate_limit_key" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_reserved_stock" row_count="0" spec="" >
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" />
+			<column name="stock_quantity" type="DOUBLE" jt="8" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="timestamp" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="expires" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<index name="pk_wp_wc_reserved_stock" unique="PRIMARY_KEY" >
+				<column name="order_id" />
+				<column name="product_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_tax_rate_classes" row_count="2" spec="" >
+			<column name="tax_rate_class_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="slug" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_wc_tax_rate_classes" unique="PRIMARY_KEY" >
+				<column name="tax_rate_class_id" />
+			</index>
+			<index name="slug" unique="UNIQUE_KEY" >
+				<column name="slug" options="(191)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wc_webhooks" row_count="0" spec="" >
+			<column name="webhook_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="status" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="name" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="delivery_url" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="secret" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="topic" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="date_created" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_created_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_modified" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="date_modified_gmt" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="api_version" type="SMALLINT" length="4" jt="5" mandatory="y" />
+			<column name="failure_count" type="SMALLINT" length="10" jt="5" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="pending_delivery" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_wc_webhooks" unique="PRIMARY_KEY" >
+				<column name="webhook_id" />
+			</index>
+			<index name="user_id" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_api_keys" row_count="1" spec="" >
+			<column name="key_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="description" type="VARCHAR" length="200" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="permissions" type="VARCHAR" length="10" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="consumer_key" type="CHAR" length="64" jt="1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="consumer_secret" type="CHAR" length="43" jt="1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="nonces" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="truncated_key" type="CHAR" length="7" jt="1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="last_access" type="DATETIME" jt="93" />
+			<index name="pk_wp_woocommerce_api_keys" unique="PRIMARY_KEY" >
+				<column name="key_id" />
+			</index>
+			<index name="consumer_key" unique="NORMAL" >
+				<column name="consumer_key" />
+			</index>
+			<index name="consumer_secret" unique="NORMAL" >
+				<column name="consumer_secret" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_attribute_taxonomies" row_count="0" spec="" >
+			<column name="attribute_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="attribute_name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="attribute_label" type="VARCHAR" length="200" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="attribute_type" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="attribute_orderby" type="VARCHAR" length="20" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="attribute_public" type="INT" length="1" jt="4" mandatory="y" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<index name="pk_wp_woocommerce_attribute_taxonomies" unique="PRIMARY_KEY" >
+				<column name="attribute_id" />
+			</index>
+			<index name="attribute_name" unique="NORMAL" >
+				<column name="attribute_name" options="(20)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_downloadable_product_permissions" row_count="0" spec="" >
+			<column name="permission_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="download_id" type="VARCHAR" length="36" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="product_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="order_key" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_email" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" unsigned="y" />
+			<column name="downloads_remaining" type="VARCHAR" length="9" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="access_granted" type="DATETIME" jt="93" mandatory="y" >
+				<defo><![CDATA['0000-00-00 00:00:00']]></defo>
+			</column>
+			<column name="access_expires" type="DATETIME" jt="93" />
+			<column name="download_count" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_woocommerce_downloadable_product_permissions" unique="PRIMARY_KEY" >
+				<column name="permission_id" />
+			</index>
+			<index name="download_order_key_product" unique="NORMAL" >
+				<column name="product_id" />
+				<column name="order_id" />
+				<column name="order_key" options="(16)" />
+				<column name="download_id" />
+			</index>
+			<index name="download_order_product" unique="NORMAL" >
+				<column name="download_id" />
+				<column name="order_id" />
+				<column name="product_id" />
+			</index>
+			<index name="order_id" unique="NORMAL" >
+				<column name="order_id" />
+			</index>
+			<index name="user_order_remaining_expires" unique="NORMAL" >
+				<column name="user_id" />
+				<column name="order_id" />
+				<column name="downloads_remaining" />
+				<column name="access_expires" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_log" row_count="0" spec="" >
+			<column name="log_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="timestamp" type="DATETIME" jt="93" mandatory="y" />
+			<column name="level" type="SMALLINT" length="4" jt="5" mandatory="y" />
+			<column name="source" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="message" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="context" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_log" unique="PRIMARY_KEY" >
+				<column name="log_id" />
+			</index>
+			<index name="level" unique="NORMAL" >
+				<column name="level" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_order_itemmeta" row_count="0" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="order_item_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_order_itemmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="order_item_id" unique="NORMAL" >
+				<column name="order_item_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(32)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_order_items" row_count="0" spec="" >
+			<column name="order_item_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="order_item_name" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="order_item_type" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="order_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<index name="pk_wp_woocommerce_order_items" unique="PRIMARY_KEY" >
+				<column name="order_item_id" />
+			</index>
+			<index name="order_id" unique="NORMAL" >
+				<column name="order_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_payment_tokenmeta" row_count="0" spec="" >
+			<column name="meta_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="payment_token_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="meta_key" type="VARCHAR" length="255" jt="12" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="meta_value" type="LONGTEXT" jt="-1" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_payment_tokenmeta" unique="PRIMARY_KEY" >
+				<column name="meta_id" />
+			</index>
+			<index name="payment_token_id" unique="NORMAL" >
+				<column name="payment_token_id" />
+			</index>
+			<index name="meta_key" unique="NORMAL" >
+				<column name="meta_key" options="(32)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_payment_tokens" row_count="0" spec="" >
+			<column name="token_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="gateway_id" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="token" type="TEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="user_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="type" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="is_default" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<index name="pk_wp_woocommerce_payment_tokens" unique="PRIMARY_KEY" >
+				<column name="token_id" />
+			</index>
+			<index name="user_id" unique="NORMAL" >
+				<column name="user_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_sessions" row_count="3" spec="" >
+			<column name="session_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="session_key" type="CHAR" length="32" jt="1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="session_value" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="session_expiry" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<index name="pk_wp_woocommerce_sessions" unique="PRIMARY_KEY" >
+				<column name="session_id" />
+			</index>
+			<index name="session_key" unique="UNIQUE_KEY" >
+				<column name="session_key" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_shipping_zone_locations" row_count="0" spec="" >
+			<column name="location_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="zone_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="location_code" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="location_type" type="VARCHAR" length="40" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_shipping_zone_locations" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+			<index name="location_id" unique="NORMAL" >
+				<column name="location_id" />
+			</index>
+			<index name="location_type_code" unique="NORMAL" >
+				<column name="location_type" options="(10)" />
+				<column name="location_code" options="(20)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_shipping_zone_methods" row_count="0" spec="" >
+			<column name="zone_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="instance_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="method_id" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="method_order" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="is_enabled" type="TINYINT" length="1" jt="-6" mandatory="y" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<index name="pk_wp_woocommerce_shipping_zone_methods" unique="PRIMARY_KEY" >
+				<column name="instance_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_shipping_zones" row_count="0" spec="" >
+			<column name="zone_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="zone_name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="zone_order" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<index name="pk_wp_woocommerce_shipping_zones" unique="PRIMARY_KEY" >
+				<column name="zone_id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_tax_rate_locations" row_count="0" spec="" >
+			<column name="location_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="location_code" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_rate_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="location_type" type="VARCHAR" length="40" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_tax_rate_locations" unique="PRIMARY_KEY" >
+				<column name="location_id" />
+			</index>
+			<index name="tax_rate_id" unique="NORMAL" >
+				<column name="tax_rate_id" />
+			</index>
+			<index name="location_type_code" unique="NORMAL" >
+				<column name="location_type" options="(10)" />
+				<column name="location_code" options="(20)" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_woocommerce_tax_rates" row_count="0" spec="" >
+			<column name="tax_rate_id" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="tax_rate_country" type="VARCHAR" length="2" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_rate_state" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_rate" type="VARCHAR" length="8" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_rate_name" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="tax_rate_priority" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="tax_rate_compound" type="INT" length="1" jt="4" mandatory="y" >
+				<defo><![CDATA['0']]></defo>
+			</column>
+			<column name="tax_rate_shipping" type="INT" length="1" jt="4" mandatory="y" >
+				<defo><![CDATA['1']]></defo>
+			</column>
+			<column name="tax_rate_order" type="BIGINT" length="20" jt="-5" mandatory="y" unsigned="y" />
+			<column name="tax_rate_class" type="VARCHAR" length="200" jt="12" mandatory="y" >
+				<defo><![CDATA['']]></defo>
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<index name="pk_wp_woocommerce_tax_rates" unique="PRIMARY_KEY" >
+				<column name="tax_rate_id" />
+			</index>
+			<index name="tax_rate_country" unique="NORMAL" >
+				<column name="tax_rate_country" />
+			</index>
+			<index name="tax_rate_state" unique="NORMAL" >
+				<column name="tax_rate_state" options="(2)" />
+			</index>
+			<index name="tax_rate_class" unique="NORMAL" >
+				<column name="tax_rate_class" options="(10)" />
+			</index>
+			<index name="tax_rate_priority" unique="NORMAL" >
+				<column name="tax_rate_priority" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+		<table name="wp_wpforms_tasks_meta" row_count="2" spec="" >
+			<column name="id" type="BIGINT" length="20" jt="-5" mandatory="y" >
+				<identity><![CDATA[AUTO_INCREMENT]]></identity>
+			</column>
+			<column name="action" type="VARCHAR" length="255" jt="12" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="data" type="LONGTEXT" jt="-1" mandatory="y" >
+				<column_options><![CDATA[COLLATE utf8mb4_unicode_520_ci]]></column_options>
+			</column>
+			<column name="date" type="DATETIME" jt="93" mandatory="y" />
+			<index name="pk_wp_wpforms_tasks_meta" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<options><![CDATA[ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci]]></options>
+		</table>
+	</schema>
+	<connector name="MySql" database="MySql" driver_class="com.mysql.cj.jdbc.Driver" driver_jar="mysql-connector-j-8.0.32.jar" driver_desc="Standard" host="localhost" port="10006" instance="local" user="root" passwd="cm9vdA==" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-6b6" show_relation="columns" >
+		<entity schema="local" name="wp_actionscheduler_actions" color="BED3F4" x="1456" y="800" />
+		<entity schema="local" name="wp_actionscheduler_claims" color="D1BEF4" x="656" y="1808" />
+		<entity schema="local" name="wp_actionscheduler_groups" color="D1BEF4" x="912" y="1808" />
+		<entity schema="local" name="wp_actionscheduler_logs" color="D1BEF4" x="912" y="1984" />
+		<entity schema="local" name="wp_blogmeta" color="BED3F4" x="1728" y="800" />
+		<entity schema="local" name="wp_blogs" color="BED3F4" x="2208" y="1824" />
+		<entity schema="local" name="wp_commentmeta" color="BED3F4" x="1728" y="1152" />
+		<entity schema="local" name="wp_comments" color="BED3F4" x="2208" y="1264" />
+		<entity schema="local" name="wp_e_events" color="BED3F4" x="1456" y="1152" />
+		<entity schema="local" name="wp_gla_attribute_mapping_rules" color="BED3F4" x="1152" y="1152" />
+		<entity schema="local" name="wp_gla_budget_recommendations" color="D1BEF4" x="2720" y="128" />
+		<entity schema="local" name="wp_gla_merchant_issues" color="D1BEF4" x="3248" y="352" />
+		<entity schema="local" name="wp_gla_shipping_rates" color="D1BEF4" x="3008" y="128" />
+		<entity schema="local" name="wp_gla_shipping_times" color="D1BEF4" x="3248" y="128" />
+		<entity schema="local" name="wp_links" color="BED3F4" x="1232" y="800" />
+		<entity schema="local" name="wp_mailpoet_automation_run_logs" color="BED3F4" x="1136" y="528" />
+		<entity schema="local" name="wp_mailpoet_automation_run_subjects" color="F4DDBE" x="5744" y="1680" />
+		<entity schema="local" name="wp_mailpoet_automation_runs" color="F4DDBE" x="5472" y="1680" />
+		<entity schema="local" name="wp_mailpoet_automation_triggers" color="BEBEF4" x="6128" y="1728" />
+		<entity schema="local" name="wp_mailpoet_automation_versions" color="BEBEF4" x="6416" y="1680" />
+		<entity schema="local" name="wp_mailpoet_automations" color="F4DDBE" x="5216" y="1680" />
+		<entity schema="local" name="wp_mailpoet_custom_fields" color="BED3F4" x="4320" y="1072" />
+		<entity schema="local" name="wp_mailpoet_dynamic_segment_filters" color="F4DDBE" x="2720" y="1920" />
+		<entity schema="local" name="wp_mailpoet_feature_flags" color="F4DDBE" x="3040" y="1920" />
+		<entity schema="local" name="wp_mailpoet_forms" color="F4DDBE" x="3296" y="1920" />
+		<entity schema="local" name="wp_mailpoet_log" color="F4DDBE" x="3728" y="1920" />
+		<entity schema="local" name="wp_mailpoet_migrations" color="BEBEF4" x="2720" y="1200" />
+		<entity schema="local" name="wp_mailpoet_newsletter_links" color="BED3F4" x="4576" y="1056" />
+		<entity schema="local" name="wp_mailpoet_newsletter_option" color="BEBEF4" x="3200" y="1200" />
+		<entity schema="local" name="wp_mailpoet_newsletter_option_fields" color="BEBEF4" x="3488" y="1200" />
+		<entity schema="local" name="wp_mailpoet_newsletter_posts" color="BED3F4" x="4848" y="1056" />
+		<entity schema="local" name="wp_mailpoet_newsletter_segment" color="BED3F4" x="4560" y="1312" />
+		<entity schema="local" name="wp_mailpoet_newsletter_templates" color="BED3F4" x="4848" y="1312" />
+		<entity schema="local" name="wp_mailpoet_newsletters" color="BEBEF4" x="2960" y="1200" />
+		<entity schema="local" name="wp_mailpoet_scheduled_task_subscribers" color="C7F4BE" x="3968" y="2032" />
+		<entity schema="local" name="wp_mailpoet_scheduled_tasks" color="C7F4BE" x="4304" y="2032" />
+		<entity schema="local" name="wp_mailpoet_segments" color="BED3F4" x="3968" y="1312" />
+		<entity schema="local" name="wp_mailpoet_sending_queues" color="C7F4BE" x="4576" y="2032" />
+		<entity schema="local" name="wp_mailpoet_settings" color="BED3F4" x="4320" y="1312" />
+		<entity schema="local" name="wp_mailpoet_statistics_bounces" color="C7F4BE" x="4576" y="2592" />
+		<entity schema="local" name="wp_mailpoet_statistics_clicks" color="C7F4BE" x="4864" y="2592" />
+		<entity schema="local" name="wp_mailpoet_statistics_forms" color="C7F4BE" x="5136" y="2592" />
+		<entity schema="local" name="wp_mailpoet_statistics_newsletters" color="F4DDBE" x="4640" y="1680" />
+		<entity schema="local" name="wp_mailpoet_statistics_opens" color="F4DDBE" x="4944" y="1680" />
+		<entity schema="local" name="wp_mailpoet_statistics_unsubscribes" color="F4DDBE" x="4336" y="1680" />
+		<entity schema="local" name="wp_mailpoet_statistics_woocommerce_purchases" color="F4DDBE" x="3968" y="1680" />
+		<entity schema="local" name="wp_mailpoet_stats_notifications" color="C7F4BE" x="4288" y="2368" />
+		<entity schema="local" name="wp_mailpoet_subscriber_custom_field" color="BEBEF4" x="6096" y="1904" />
+		<entity schema="local" name="wp_mailpoet_subscriber_ips" color="BEBEF4" x="6416" y="1904" />
+		<entity schema="local" name="wp_mailpoet_subscriber_segment" color="BEBEF4" x="6976" y="1904" />
+		<entity schema="local" name="wp_mailpoet_subscriber_tag" color="BEBEF4" x="6976" y="2208" />
+		<entity schema="local" name="wp_mailpoet_subscribers" color="BEBEF4" x="6672" y="1904" />
+		<entity schema="local" name="wp_mailpoet_tags" color="F4DDBE" x="3520" y="1920" />
+		<entity schema="local" name="wp_mailpoet_user_agents" color="F4DDBE" x="3264" y="1696" />
+		<entity schema="local" name="wp_mailpoet_user_flags" color="F4DDBE" x="3520" y="1680" />
+		<entity schema="local" name="wp_options" color="BED3F4" x="1456" y="592" />
+		<entity schema="local" name="wp_postmeta" color="BED3F4" x="1728" y="592" />
+		<entity schema="local" name="wp_posts" color="BED3F4" x="1472" y="80" />
+		<entity schema="local" name="wp_registration_log" color="BED3F4" x="1936" y="800" />
+		<entity schema="local" name="wp_signups" color="BED3F4" x="1936" y="480" />
+		<entity schema="local" name="wp_site" color="C7F4BE" x="2720" y="2256" />
+		<entity schema="local" name="wp_sitemeta" color="C7F4BE" x="2896" y="2256" />
+		<entity schema="local" name="wp_term_relationships" color="BED3F4" x="1952" y="1152" />
+		<entity schema="local" name="wp_term_taxonomy" color="D1BEF4" x="1200" y="2256" />
+		<entity schema="local" name="wp_termmeta" color="D1BEF4" x="1440" y="2256" />
+		<entity schema="local" name="wp_terms" color="D1BEF4" x="1632" y="2256" />
+		<entity schema="local" name="wp_um_metadata" color="BED3F4" x="1952" y="1360" />
+		<entity schema="local" name="wp_usermeta" color="BED3F4" x="2256" y="2256" />
+		<entity schema="local" name="wp_users" color="BED3F4" x="2448" y="2256" />
+		<entity schema="local" name="wp_wc_admin_note_actions" color="BED3F4" x="1680" y="1360" />
+		<entity schema="local" name="wp_wc_admin_notes" color="F4DDBE" x="2528" y="3248" />
+		<entity schema="local" name="wp_wc_category_lookup" color="BED3F4" x="2208" y="1648" />
+		<entity schema="local" name="wp_wc_customer_lookup" color="BED3F4" x="2464" y="1648" />
+		<entity schema="local" name="wp_wc_download_log" color="BEBEF4" x="432" y="2256" />
+		<entity schema="local" name="wp_wc_order_coupon_lookup" color="BEBEF4" x="896" y="2848" />
+		<entity schema="local" name="wp_wc_order_product_lookup" color="BEBEF4" x="624" y="2848" />
+		<entity schema="local" name="wp_wc_order_stats" color="BEBEF4" x="656" y="2480" />
+		<entity schema="local" name="wp_wc_order_tax_lookup" color="BEBEF4" x="896" y="2480" />
+		<entity schema="local" name="wp_wc_product_attributes_lookup" color="BEBEF4" x="368" y="2480" />
+		<entity schema="local" name="wp_wc_product_download_directories" color="BEBEF4" x="48" y="2528" />
+		<entity schema="local" name="wp_wc_product_meta_lookup" color="BEBEF4" x="96" y="2720" />
+		<entity schema="local" name="wp_wc_rate_limits" color="F4DDBE" x="2288" y="3248" />
+		<entity schema="local" name="wp_wc_reserved_stock" color="BEBEF4" x="656" y="2256" />
+		<entity schema="local" name="wp_wc_tax_rate_classes" color="BED3F4" x="1952" y="1648" />
+		<entity schema="local" name="wp_wc_webhooks" color="C7F4BE" x="3024" y="3680" />
+		<entity schema="local" name="wp_woocommerce_api_keys" color="F4DDBE" x="1792" y="3248" />
+		<entity schema="local" name="wp_woocommerce_attribute_taxonomies" color="F4DDBE" x="2048" y="3536" />
+		<entity schema="local" name="wp_woocommerce_downloadable_product_permissions" color="C7F4BE" x="3872" y="3680" />
+		<entity schema="local" name="wp_woocommerce_log" color="F4DDBE" x="2048" y="3248" />
+		<entity schema="local" name="wp_woocommerce_order_itemmeta" color="F4DDBE" x="1488" y="3328" />
+		<entity schema="local" name="wp_woocommerce_order_items" color="F4DDBE" x="1200" y="3536" />
+		<entity schema="local" name="wp_woocommerce_payment_tokenmeta" color="F4DDBE" x="1728" y="3536" />
+		<entity schema="local" name="wp_woocommerce_payment_tokens" color="F4DDBE" x="1728" y="3744" />
+		<entity schema="local" name="wp_woocommerce_sessions" color="C7F4BE" x="3616" y="3472" />
+		<entity schema="local" name="wp_woocommerce_shipping_zone_locations" color="C7F4BE" x="4176" y="3472" />
+		<entity schema="local" name="wp_woocommerce_shipping_zone_methods" color="C7F4BE" x="3520" y="3248" />
+		<entity schema="local" name="wp_woocommerce_shipping_zones" color="C7F4BE" x="3872" y="3472" />
+		<entity schema="local" name="wp_woocommerce_tax_rate_locations" color="C7F4BE" x="3024" y="3472" />
+		<entity schema="local" name="wp_woocommerce_tax_rates" color="C7F4BE" x="3344" y="3472" />
+		<entity schema="local" name="wp_wpforms_tasks_meta" color="C7F4BE" x="2784" y="3472" />
+		<callout x="1504" y="704" pointer="Round" >
+			<comment><![CDATA[This is a layout. 
+- Double-click table headers, columns, or foreign keys to edit 
+- Drag tables to the layout from the structure tree, or 
+   add them by pressing the arrow icon near columns 
+- Create multiple layouts with the same or different tables 
+- Right-click the layout to create new tables]]></comment>
+		</callout>
+		<group name="wp_actionscheduler_actions" color="ECF0F7" >
+			<entity schema="local" name="wp_actionscheduler_actions" />
+			<entity schema="local" name="wp_blogmeta" />
+			<entity schema="local" name="wp_commentmeta" />
+			<entity schema="local" name="wp_e_events" />
+			<entity schema="local" name="wp_gla_attribute_mapping_rules" />
+			<entity schema="local" name="wp_links" />
+			<entity schema="local" name="wp_mailpoet_automation_run_logs" />
+			<entity schema="local" name="wp_options" />
+			<entity schema="local" name="wp_postmeta" />
+			<entity schema="local" name="wp_registration_log" />
+			<entity schema="local" name="wp_signups" />
+			<entity schema="local" name="wp_term_relationships" />
+			<entity schema="local" name="wp_um_metadata" />
+			<entity schema="local" name="wp_wc_admin_note_actions" />
+			<entity schema="local" name="wp_wc_tax_rate_classes" />
+			<entity schema="local" name="wp_wc_category_lookup" />
+			<entity schema="local" name="wp_wc_customer_lookup" />
+			<entity schema="local" name="wp_blogs" />
+			<entity schema="local" name="wp_posts" />
+			<entity schema="local" name="wp_comments" />
+		</group>
+		<group name="wp_gla_budget_recommendations" color="F0ECF7" >
+			<entity schema="local" name="wp_gla_budget_recommendations" />
+			<entity schema="local" name="wp_gla_shipping_rates" />
+			<entity schema="local" name="wp_gla_shipping_times" />
+			<entity schema="local" name="wp_gla_merchant_issues" />
+		</group>
+		<group name="wp_mailpoet_dynamic_segment_filters" color="F7F2EC" >
+			<entity schema="local" name="wp_mailpoet_dynamic_segment_filters" />
+			<entity schema="local" name="wp_mailpoet_feature_flags" />
+			<entity schema="local" name="wp_mailpoet_forms" />
+			<entity schema="local" name="wp_mailpoet_tags" />
+			<entity schema="local" name="wp_mailpoet_log" />
+			<entity schema="local" name="wp_mailpoet_user_agents" />
+			<entity schema="local" name="wp_mailpoet_user_flags" />
+		</group>
+		<group name="wp_site" color="EEF7EC" >
+			<entity schema="local" name="wp_site" />
+			<entity schema="local" name="wp_sitemeta" />
+		</group>
+		<group name="wp_term_taxonomy" color="F0ECF7" >
+			<entity schema="local" name="wp_term_taxonomy" />
+			<entity schema="local" name="wp_termmeta" />
+			<entity schema="local" name="wp_terms" />
+		</group>
+		<group name="wp_usermeta" color="ECF0F7" >
+			<entity schema="local" name="wp_usermeta" />
+			<entity schema="local" name="wp_users" />
+		</group>
+		<group name="wp_wc_product_attributes_lookup" color="ECECF7" >
+			<entity schema="local" name="wp_wc_product_attributes_lookup" />
+			<entity schema="local" name="wp_wc_order_stats" />
+			<entity schema="local" name="wp_wc_order_tax_lookup" />
+			<entity schema="local" name="wp_wc_order_coupon_lookup" />
+			<entity schema="local" name="wp_wc_product_meta_lookup" />
+			<entity schema="local" name="wp_wc_product_download_directories" />
+			<entity schema="local" name="wp_wc_download_log" />
+			<entity schema="local" name="wp_wc_reserved_stock" />
+			<entity schema="local" name="wp_wc_order_product_lookup" />
+		</group>
+		<group name="wp_woocommerce_api_keys" color="F7F2EC" >
+			<entity schema="local" name="wp_woocommerce_api_keys" />
+			<entity schema="local" name="wp_woocommerce_log" />
+			<entity schema="local" name="wp_woocommerce_attribute_taxonomies" />
+			<entity schema="local" name="wp_woocommerce_payment_tokenmeta" />
+			<entity schema="local" name="wp_woocommerce_payment_tokens" />
+			<entity schema="local" name="wp_woocommerce_order_itemmeta" />
+			<entity schema="local" name="wp_woocommerce_order_items" />
+			<entity schema="local" name="wp_wc_rate_limits" />
+			<entity schema="local" name="wp_wc_admin_notes" />
+		</group>
+		<group name="wp_wpforms_tasks_meta" color="EEF7EC" >
+			<entity schema="local" name="wp_wpforms_tasks_meta" />
+			<entity schema="local" name="wp_woocommerce_tax_rate_locations" />
+			<entity schema="local" name="wp_woocommerce_tax_rates" />
+			<entity schema="local" name="wp_woocommerce_sessions" />
+			<entity schema="local" name="wp_woocommerce_shipping_zones" />
+			<entity schema="local" name="wp_woocommerce_downloadable_product_permissions" />
+			<entity schema="local" name="wp_woocommerce_shipping_zone_locations" />
+			<entity schema="local" name="wp_woocommerce_shipping_zone_methods" />
+			<entity schema="local" name="wp_wc_webhooks" />
+		</group>
+		<group name="wp_mailpoet_statistics_woocommerce_purchases" color="F7F2EC" >
+			<entity schema="local" name="wp_mailpoet_statistics_woocommerce_purchases" />
+			<entity schema="local" name="wp_mailpoet_statistics_unsubscribes" />
+			<entity schema="local" name="wp_mailpoet_statistics_newsletters" />
+			<entity schema="local" name="wp_mailpoet_statistics_opens" />
+			<entity schema="local" name="wp_mailpoet_automations" />
+			<entity schema="local" name="wp_mailpoet_automation_runs" />
+			<entity schema="local" name="wp_mailpoet_automation_run_subjects" />
+		</group>
+		<group name="wp_mailpoet_subscriber_custom_field" color="ECECF7" >
+			<entity schema="local" name="wp_mailpoet_subscriber_custom_field" />
+			<entity schema="local" name="wp_mailpoet_subscriber_ips" />
+			<entity schema="local" name="wp_mailpoet_subscribers" />
+			<entity schema="local" name="wp_mailpoet_automation_triggers" />
+			<entity schema="local" name="wp_mailpoet_automation_versions" />
+			<entity schema="local" name="wp_mailpoet_subscriber_segment" />
+			<entity schema="local" name="wp_mailpoet_subscriber_tag" />
+		</group>
+		<group name="wp_mailpoet_scheduled_task_subscribers" color="EEF7EC" >
+			<entity schema="local" name="wp_mailpoet_scheduled_task_subscribers" />
+			<entity schema="local" name="wp_mailpoet_scheduled_tasks" />
+			<entity schema="local" name="wp_mailpoet_sending_queues" />
+			<entity schema="local" name="wp_mailpoet_stats_notifications" />
+			<entity schema="local" name="wp_mailpoet_statistics_bounces" />
+			<entity schema="local" name="wp_mailpoet_statistics_clicks" />
+			<entity schema="local" name="wp_mailpoet_statistics_forms" />
+		</group>
+		<group name="wp_mailpoet_migrations" color="ECECF7" >
+			<entity schema="local" name="wp_mailpoet_migrations" />
+			<entity schema="local" name="wp_mailpoet_newsletters" />
+			<entity schema="local" name="wp_mailpoet_newsletter_option" />
+			<entity schema="local" name="wp_mailpoet_newsletter_option_fields" />
+		</group>
+		<group name="wp_mailpoet_newsletter_links" color="ECF0F7" >
+			<entity schema="local" name="wp_mailpoet_newsletter_links" />
+			<entity schema="local" name="wp_mailpoet_newsletter_posts" />
+			<entity schema="local" name="wp_mailpoet_newsletter_templates" />
+			<entity schema="local" name="wp_mailpoet_newsletter_segment" />
+			<entity schema="local" name="wp_mailpoet_custom_fields" />
+			<entity schema="local" name="wp_mailpoet_segments" />
+			<entity schema="local" name="wp_mailpoet_settings" />
+		</group>
+		<group name="wp_actionscheduler_claims" color="F0ECF7" >
+			<entity schema="local" name="wp_actionscheduler_claims" />
+			<entity schema="local" name="wp_actionscheduler_groups" />
+			<entity schema="local" name="wp_actionscheduler_logs" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-1f49" show_column_type="y" show_relation="columns" >
+		<entity schema="local" name="wp_actionscheduler_actions" color="BED3F4" x="1584" y="768" />
+		<entity schema="local" name="wp_actionscheduler_claims" color="D1BEF4" x="656" y="1728" />
+		<entity schema="local" name="wp_actionscheduler_groups" color="D1BEF4" x="944" y="1728" />
+		<entity schema="local" name="wp_actionscheduler_logs" color="D1BEF4" x="944" y="1904" />
+		<entity schema="local" name="wp_blogmeta" color="BED3F4" x="1888" y="768" />
+		<entity schema="local" name="wp_blogs" color="BED3F4" x="2416" y="1792" />
+		<entity schema="local" name="wp_commentmeta" color="BED3F4" x="1888" y="1120" />
+		<entity schema="local" name="wp_comments" color="BED3F4" x="2672" y="1232" />
+		<entity schema="local" name="wp_e_events" color="BED3F4" x="1584" y="1120" />
+		<entity schema="local" name="wp_gla_attribute_mapping_rules" color="BED3F4" x="1248" y="1120" />
+		<entity schema="local" name="wp_gla_budget_recommendations" color="D1BEF4" x="3040" y="48" />
+		<entity schema="local" name="wp_gla_merchant_issues" color="D1BEF4" x="3584" y="272" />
+		<entity schema="local" name="wp_gla_shipping_rates" color="D1BEF4" x="3328" y="48" />
+		<entity schema="local" name="wp_gla_shipping_times" color="D1BEF4" x="3584" y="48" />
+		<entity schema="local" name="wp_links" color="BED3F4" x="1280" y="768" />
+		<entity schema="local" name="wp_mailpoet_automation_run_logs" color="BED3F4" x="1280" y="496" />
+		<entity schema="local" name="wp_mailpoet_automation_run_subjects" color="F4DDBE" x="6240" y="1440" />
+		<entity schema="local" name="wp_mailpoet_automation_runs" color="F4DDBE" x="5952" y="1440" />
+		<entity schema="local" name="wp_mailpoet_automation_triggers" color="BEBEF4" x="6624" y="1488" />
+		<entity schema="local" name="wp_mailpoet_automation_versions" color="BEBEF4" x="6912" y="1440" />
+		<entity schema="local" name="wp_mailpoet_automations" color="F4DDBE" x="5680" y="1440" />
+		<entity schema="local" name="wp_mailpoet_custom_fields" color="BED3F4" x="4848" y="624" />
+		<entity schema="local" name="wp_mailpoet_dynamic_segment_filters" color="F4DDBE" x="3040" y="1440" />
+		<entity schema="local" name="wp_mailpoet_feature_flags" color="F4DDBE" x="3360" y="1440" />
+		<entity schema="local" name="wp_mailpoet_forms" color="F4DDBE" x="3616" y="1440" />
+		<entity schema="local" name="wp_mailpoet_log" color="F4DDBE" x="4128" y="1440" />
+		<entity schema="local" name="wp_mailpoet_migrations" color="BEBEF4" x="3040" y="960" />
+		<entity schema="local" name="wp_mailpoet_newsletter_links" color="BED3F4" x="5104" y="608" />
+		<entity schema="local" name="wp_mailpoet_newsletter_option" color="BEBEF4" x="3616" y="960" />
+		<entity schema="local" name="wp_mailpoet_newsletter_option_fields" color="BEBEF4" x="3904" y="960" />
+		<entity schema="local" name="wp_mailpoet_newsletter_posts" color="BED3F4" x="5376" y="608" />
+		<entity schema="local" name="wp_mailpoet_newsletter_segment" color="BED3F4" x="5088" y="864" />
+		<entity schema="local" name="wp_mailpoet_newsletter_templates" color="BED3F4" x="5376" y="864" />
+		<entity schema="local" name="wp_mailpoet_newsletters" color="BEBEF4" x="3312" y="960" />
+		<entity schema="local" name="wp_mailpoet_scheduled_task_subscribers" color="C7F4BE" x="4432" y="1792" />
+		<entity schema="local" name="wp_mailpoet_scheduled_tasks" color="C7F4BE" x="4768" y="1792" />
+		<entity schema="local" name="wp_mailpoet_segments" color="BED3F4" x="4432" y="864" />
+		<entity schema="local" name="wp_mailpoet_sending_queues" color="C7F4BE" x="5040" y="1792" />
+		<entity schema="local" name="wp_mailpoet_settings" color="BED3F4" x="4848" y="1168" />
+		<entity schema="local" name="wp_mailpoet_statistics_bounces" color="C7F4BE" x="5040" y="2352" />
+		<entity schema="local" name="wp_mailpoet_statistics_clicks" color="C7F4BE" x="5328" y="2352" />
+		<entity schema="local" name="wp_mailpoet_statistics_forms" color="C7F4BE" x="5600" y="2352" />
+		<entity schema="local" name="wp_mailpoet_statistics_newsletters" color="F4DDBE" x="5104" y="1440" />
+		<entity schema="local" name="wp_mailpoet_statistics_opens" color="F4DDBE" x="5408" y="1440" />
+		<entity schema="local" name="wp_mailpoet_statistics_unsubscribes" color="F4DDBE" x="4800" y="1440" />
+		<entity schema="local" name="wp_mailpoet_statistics_woocommerce_purchases" color="F4DDBE" x="4432" y="1440" />
+		<entity schema="local" name="wp_mailpoet_stats_notifications" color="C7F4BE" x="4752" y="2128" />
+		<entity schema="local" name="wp_mailpoet_subscriber_custom_field" color="BEBEF4" x="6592" y="1664" />
+		<entity schema="local" name="wp_mailpoet_subscriber_ips" color="BEBEF4" x="6912" y="1664" />
+		<entity schema="local" name="wp_mailpoet_subscriber_segment" color="BEBEF4" x="7536" y="1664" />
+		<entity schema="local" name="wp_mailpoet_subscriber_tag" color="BEBEF4" x="7536" y="1968" />
+		<entity schema="local" name="wp_mailpoet_subscribers" color="BEBEF4" x="7168" y="1664" />
+		<entity schema="local" name="wp_mailpoet_tags" color="F4DDBE" x="3872" y="1440" />
+		<entity schema="local" name="wp_mailpoet_user_agents" color="F4DDBE" x="3872" y="1664" />
+		<entity schema="local" name="wp_mailpoet_user_flags" color="F4DDBE" x="4128" y="1888" />
+		<entity schema="local" name="wp_options" color="BED3F4" x="1584" y="560" />
+		<entity schema="local" name="wp_postmeta" color="BED3F4" x="1888" y="560" />
+		<entity schema="local" name="wp_posts" color="BED3F4" x="1584" y="48" />
+		<entity schema="local" name="wp_registration_log" color="BED3F4" x="2160" y="768" />
+		<entity schema="local" name="wp_signups" color="BED3F4" x="2160" y="448" />
+		<entity schema="local" name="wp_site" color="C7F4BE" x="3040" y="2176" />
+		<entity schema="local" name="wp_sitemeta" color="C7F4BE" x="3296" y="2176" />
+		<entity schema="local" name="wp_term_relationships" color="BED3F4" x="2160" y="1120" />
+		<entity schema="local" name="wp_term_taxonomy" color="D1BEF4" x="1248" y="2176" />
+		<entity schema="local" name="wp_termmeta" color="D1BEF4" x="1520" y="2176" />
+		<entity schema="local" name="wp_terms" color="D1BEF4" x="1792" y="2176" />
+		<entity schema="local" name="wp_um_metadata" color="BED3F4" x="2160" y="1328" />
+		<entity schema="local" name="wp_usermeta" color="BED3F4" x="2416" y="2176" />
+		<entity schema="local" name="wp_users" color="BED3F4" x="2688" y="2176" />
+		<entity schema="local" name="wp_wc_admin_note_actions" color="BED3F4" x="1872" y="1328" />
+		<entity schema="local" name="wp_wc_admin_notes" color="F4DDBE" x="2688" y="3168" />
+		<entity schema="local" name="wp_wc_category_lookup" color="BED3F4" x="2416" y="1616" />
+		<entity schema="local" name="wp_wc_customer_lookup" color="BED3F4" x="2672" y="1616" />
+		<entity schema="local" name="wp_wc_download_log" color="BEBEF4" x="352" y="2176" />
+		<entity schema="local" name="wp_wc_order_coupon_lookup" color="BEBEF4" x="944" y="2768" />
+		<entity schema="local" name="wp_wc_order_product_lookup" color="BEBEF4" x="640" y="2768" />
+		<entity schema="local" name="wp_wc_order_stats" color="BEBEF4" x="656" y="2400" />
+		<entity schema="local" name="wp_wc_order_tax_lookup" color="BEBEF4" x="944" y="2400" />
+		<entity schema="local" name="wp_wc_product_attributes_lookup" color="BEBEF4" x="368" y="2400" />
+		<entity schema="local" name="wp_wc_product_download_directories" color="BEBEF4" x="48" y="2448" />
+		<entity schema="local" name="wp_wc_product_meta_lookup" color="BEBEF4" x="80" y="2640" />
+		<entity schema="local" name="wp_wc_rate_limits" color="F4DDBE" x="2384" y="3168" />
+		<entity schema="local" name="wp_wc_reserved_stock" color="BEBEF4" x="656" y="2176" />
+		<entity schema="local" name="wp_wc_tax_rate_classes" color="BED3F4" x="2160" y="1616" />
+		<entity schema="local" name="wp_wc_webhooks" color="C7F4BE" x="3248" y="3600" />
+		<entity schema="local" name="wp_woocommerce_api_keys" color="F4DDBE" x="1856" y="3168" />
+		<entity schema="local" name="wp_woocommerce_attribute_taxonomies" color="F4DDBE" x="2128" y="3456" />
+		<entity schema="local" name="wp_woocommerce_downloadable_product_permissions" color="C7F4BE" x="4128" y="3600" />
+		<entity schema="local" name="wp_woocommerce_log" color="F4DDBE" x="2128" y="3168" />
+		<entity schema="local" name="wp_woocommerce_order_itemmeta" color="F4DDBE" x="1552" y="3248" />
+		<entity schema="local" name="wp_woocommerce_order_items" color="F4DDBE" x="1248" y="3456" />
+		<entity schema="local" name="wp_woocommerce_payment_tokenmeta" color="F4DDBE" x="1808" y="3456" />
+		<entity schema="local" name="wp_woocommerce_payment_tokens" color="F4DDBE" x="1808" y="3664" />
+		<entity schema="local" name="wp_woocommerce_sessions" color="C7F4BE" x="3856" y="3392" />
+		<entity schema="local" name="wp_woocommerce_shipping_zone_locations" color="C7F4BE" x="4432" y="3392" />
+		<entity schema="local" name="wp_woocommerce_shipping_zone_methods" color="C7F4BE" x="3776" y="3168" />
+		<entity schema="local" name="wp_woocommerce_shipping_zones" color="C7F4BE" x="4128" y="3392" />
+		<entity schema="local" name="wp_woocommerce_tax_rate_locations" color="C7F4BE" x="3248" y="3392" />
+		<entity schema="local" name="wp_woocommerce_tax_rates" color="C7F4BE" x="3568" y="3392" />
+		<entity schema="local" name="wp_wpforms_tasks_meta" color="C7F4BE" x="2992" y="3392" />
+		<script name="SQL Editor" id="Editor-2282" language="SQL" >
+			<string><![CDATA[SELECT
+	action_id, hook, `status`, scheduled_date_gmt, scheduled_date_local, args, schedule, group_id, attempts, last_attempt_gmt, 
+	last_attempt_local, claim_id, extended_args
+FROM
+	local.wp_actionscheduler_actions s;]]></string>
+		</script>
+		<browser id="Browse-da1" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="local" entity="wp_actionscheduler_actions" x="20" y="20" width="400" height="300" />
+		</browser>
+		<query id="Query-13cb" name="Query Builder" >
+			<query_table schema="local" name="wp_actionscheduler_actions" alias="waa" x="48" y="48" >
+				<column name="action_id" />
+				<column name="hook" />
+				<column name="status" />
+				<column name="scheduled_date_gmt" />
+				<column name="scheduled_date_local" />
+				<column name="args" />
+				<column name="schedule" />
+				<column name="group_id" />
+				<column name="attempts" />
+				<column name="last_attempt_gmt" />
+				<column name="last_attempt_local" />
+				<column name="claim_id" />
+				<column name="extended_args" />
+			</query_table>
+		</query>
+		<form name="Report" id="Report-1d71" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Wp_actionscheduler_actions Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="action_id" type="-5" />
+						<var name="hook" type="-1" />
+						<var name="status" type="-1" />
+						<var name="scheduled_date_gmt" type="93" />
+						<var name="scheduled_date_local" type="93" />
+						<var name="args" type="-1" />
+						<var name="schedule" type="-1" />
+						<var name="group_id" type="-5" />
+						<var name="attempts" type="4" />
+						<var name="last_attempt_gmt" type="93" />
+						<var name="last_attempt_local" type="93" />
+						<var name="claim_id" type="-5" />
+						<var name="extended_args" type="-1" />
+						<script ><![CDATA[SELECT * FROM local.wp_actionscheduler_actions]]></script>
+					</form_script>
+					<param name="i0" value="status" />
+					<param name="width" value="100%" />
+					<param name="v0" value="claim_id" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="action_id" type="-5" />
+						<var name="hook" type="-1" />
+						<var name="status" type="-1" />
+						<var name="scheduled_date_gmt" type="93" />
+						<var name="scheduled_date_local" type="93" />
+						<var name="args" type="-1" />
+						<var name="schedule" type="-1" />
+						<var name="group_id" type="-5" />
+						<var name="attempts" type="4" />
+						<var name="last_attempt_gmt" type="93" />
+						<var name="last_attempt_local" type="93" />
+						<var name="claim_id" type="-5" />
+						<var name="extended_args" type="-1" />
+						<script ><![CDATA[SELECT * FROM local.wp_actionscheduler_actions]]></script>
+					</form_script>
+					<cell type="label" name="action_id" pos="0,0,0,0,c,c" />
+					<cell type="label" name="hook" pos="1,0,1,0,c,c" />
+					<cell type="label" name="status" pos="2,0,2,0,c,c" />
+					<cell type="label" name="scheduled_date_gmt" pos="3,0,3,0,c,c" />
+					<cell type="label" name="scheduled_date_local" pos="4,0,4,0,c,c" />
+					<cell type="label" name="args" pos="5,0,5,0,c,c" />
+					<cell type="label" name="Button can open other pages." pos="6,0,6,0,c,c" />
+					<cell type="label" name="${action_id}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${hook}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${status}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${scheduled_date_gmt}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${scheduled_date_local}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${args}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="6,1,6,1,c,c" ref_id="Report-1d71" />
+				</tableview>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-1d71" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-1d71" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-1d71" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
